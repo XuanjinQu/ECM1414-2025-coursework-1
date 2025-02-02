@@ -1,0 +1,21 @@
+(A)Organize the team, coordinate progress, and ensure timely delivery. 
+Research SCAN and LOOK algorithms and design the system architecture. 
+Responsible for the final documentation of the system design. 
+
+ (B)Design and implement data structures (queue, priority queue, heap). 
+Develop data_structures.py and algorithms.py to implement SCAN and LOOK algorithms. 
+Ensure algorithm correctness and write unit tests. 
+
+ (C)Implement elevator simulation in simulation.py. 
+Set elevator capacity, operating speed, and floor movement time. 
+Handle real-time requests and support multi-floor, high-concurrency scenarios. 
+
+ (D)Implement real-time scheduling logic in algorithms.py. 
+Conduct performance testing under high-load and low-load conditions. 
+Record test data and compare the efficiency of SCAN and LOOK algorithms.
+
+(E)Write detailed project documentation, covering design, implementation, and testing. 
+Generate performance comparison charts and analyze experimental results. 
+Record and edit a demonstration video showcasing the system in action. I have written a draft, perhaps we can refer to it.
+
+-Task list created by Yanbin Huang
