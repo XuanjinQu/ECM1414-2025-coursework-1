@@ -7,6 +7,8 @@ final class Floor {
     // the value of each object represents the floor number that person wants to travel to
     java.util.ArrayList<Integer> FloorRequests = new ArrayList<Integer>();
 
+    private Floor() {}
+
     public java.util.ArrayList<Integer> GetFloorRequests() {
         return FloorRequests;
     }
@@ -46,6 +48,8 @@ final class Floor {
 final class BuildingConfiguration {
     // contains any number of floors
     java.util.ArrayList<Floor> Floors  = new java.util.ArrayList<Floor>();
+
+    private BuildingConfiguration() {}
 
     public java.util.ArrayList<Floor> GetFloors() {
         return Floors;
