@@ -1,0 +1,17 @@
+Scan and Look Algorithms Explanations
+    Example Requests: Starts at floor 5 going up, needs to stop at 1, 9, 4, 7, 3, 6
+    
+    SCAN:
+        -The elevator will travel in one direction until it reaches the end of its range and then reversing direction
+    Example:
+        -Starting at floor 5 and moving upwards, it will stop at 6, 7, 9, then travelling to floor 10, when it will then
+        reverse its direction to floors 4, 3, 1.
+
+    LOOK:
+        -LOOK algorithm is similar to SCAN but focuses on only going as far as the furthest request in the current direction.
+    Example:
+        -Starting at floor 5 and going upwards, the elevator will stop at floors 6, 7, 9. After reaching the furthest requested floor
+        it will reverse direction and visit floors 4, 3, 1.
+
+Other Algorithms:
+

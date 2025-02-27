@@ -1,51 +1,60 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.List;
 import java.util.Random;
 
-// Represents a floor on the building
+//represents a floor on the building
 public final class FloorState {
-    //  each object represents a number of people
-    // the value of each object represents the floor number that person wants to travel to
-    java.util.Queue<Integer> FloorRequests = new java.util.LinkedList<Integer>();
+    //each object represents a number of people
+    //the value of each object represents the floor number that person wants to travel to
+    private final Queue<Integer> FloorRequests = new LinkedList<>();
 
-    // default constructor
-    // marked private to control how this class is initialised
+    //default constructor - marked private to control how this class is initialized
     private FloorState() {}
 
-    // Getter for floor requests
-    public java.util.Queue<Integer> GetFloorRequests() {
+    //constructor to initialise floor requests from a list from a file
+    public FloorState(List<Integer> requests) {
+        FloorRequests.addAll(requests);
+    }
+
+    //getter for floor requests
+    public Queue<Integer> GetFloorRequests() {
         return FloorRequests;
     }
 
-    // private setter for floor requests
-    // avoids external entities modifying this class mid-algorithm by accident
-    private void AddFloorRequest(int floor) {
+    // adds a floor request
+    public void AddFloorRequest(int floor) {
         FloorRequests.add(floor);
     }
 
-    // helper function to generate a random instance of a Floor
+    //helper function to generate a floor with random requests 
     public static FloorState FromRandom(int MaxDestination, int MaxNumberOfRequests) {
         Random rand = new Random();
-
         FloorState floor = new FloorState();
+        int NumberOfRequests = rand.nextInt(MaxNumberOfRequests);
 
-        int NumberofRequests = rand.nextInt(MaxNumberOfRequests);
-
-        for (int i = 0; i < NumberofRequests; i++) {
-            floor.AddFloorRequest(rand.nextInt(MaxDestination));
+        for (int i = 0; i < NumberOfRequests; i++) {
+            int requestFloor;
+            do {
+                requestFloor = rand.nextInt(MaxDestination) + 1; // Ensure it's a valid floor
+            } while (requestFloor == i + 1); // Prevent requesting the same floor
+            floor.AddFloorRequest(requestFloor);
         }
 
         return floor;
     }
 
-    // helpful when debugging allows simple printing of the object
+    //helpful when debugging allows simple printing of the object
+    @Override
     public String toString() {
-        StringBuilder ret = new StringBuilder("floor = {");
+        StringBuilder ret = new StringBuilder("Floor Requests: {");
         Queue<Integer> FloorRequestsCopy = new LinkedList<>(FloorRequests);
-        for (int i = 0; i < FloorRequests.size(); i++) {
+        int size = FloorRequestsCopy.size();
+
+        for (int i = 0; i < size; i++) {
             ret.append(FloorRequestsCopy.remove());
-            if (i != FloorRequests.size() - 1) {
+            if (i != size - 1) {
                 ret.append(", ");
             }
         }

@@ -1,47 +1,32 @@
-
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.List;
 
-// Represents the state of the building
-final public class FloorsState {
-    // contains any number of floors
-    java.util.ArrayList<FloorState> Floors  = new java.util.ArrayList<FloorState>();
+// shows the state of the building
+public final class FloorsState {
+    //list of all floors in the building
+    private final ArrayList<FloorState> Floors = new ArrayList<>();
 
-    // private default constructor
-    // allows us to better control how this class is initialized, through static member functions e.g GetRandom
+    // default constructor
     private FloorsState() {}
 
-    // Getter for the floors
-    public java.util.ArrayList<FloorState> GetFloors() {
+    //getter for the floors
+    public ArrayList<FloorState> GetFloors() {
         return Floors;
     }
 
-    // private setter for the floors
-    // prevents modification of the floors by external entities
-    private void AddFloor(FloorState floor) {
-        Floors.add(floor);
-    }
-
-    // helper function to get a random instance of a Building configuration
-    public static FloorsState FromRandom(int MaxFloors, int MaxPeoplePerFloor) {
-        Random rand = new Random();
-
-        FloorsState Configuration = new FloorsState();
-
-        int AmountOfFloors = rand.nextInt(MaxFloors);
-
-        for (int i = 0; i < AmountOfFloors; i++) {
-            FloorState floor = FloorState.FromRandom(MaxFloors, MaxPeoplePerFloor);
-
-            Configuration.AddFloor(floor);
+    //constructor to initialise floors with requests from a file
+    public FloorsState(int numFloors, HashMap<Integer, List<Integer>> requestsMap) {
+        for (int i = 0; i < numFloors; i++) {
+            List<Integer> requests = requestsMap.getOrDefault(i + 1, new ArrayList<>());
+            Floors.add(new FloorState(requests));
         }
-
-        return Configuration;
     }
 
-    // easily convert to string for simple printing
+    // easily convert to string for debugging
+    @Override
     public String toString() {
-        StringBuilder ret = new StringBuilder("floors = {");
+        StringBuilder ret = new StringBuilder("Floors = {");
         for (int i = 0; i < Floors.size(); i++) {
             ret.append(Floors.get(i).toString());
             if (i != Floors.size() - 1) {
